@@ -1,57 +1,39 @@
+import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import Gallery from '../screens/Gallery';
-import HomeScreen from '../screens/HomeScreen';
-import Profile from '../screens/Profile';
-import DishDetail from '../screens/DishDetail';
-import Task from '../screens/Task';
-import TodayScreen from '../screens/TodayScreen';
+import MainScreen from '../Screen/MainScreen';
 import BottomBar from './BottomBar';
-import Registration from '../screens/Registration';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import LoginScreen from '../screens/LoginScreen';
-import SignupScreen from '../screens/SignupScreen';
-import auth from '@react-native-firebase/auth'
-import PasswordReset from '../screens/PasswordResetScreen';
+import Login from '../Screen/Login';
+import ResetPassword from '../Screen/ResetPassword';
+import Register from '../Screen/Register';
+import Setting from '../Screen/Setting';
+import Following from '../Screen/Following';
+import EditProfile from '../Screen/EditProfile';
+import DeleteAccount from '../Screen/DeleteAccount';
+import OpenCard from '../Screen/OpenCard';
+import FollowScreen from '../Screen/FollowScreen';
+import ForYou from '../Screen/ForYou';
+import UserProfile from '../Screen/UserProfile';
 
-export const StackNav = () => {
-    const [user, setuser] = React.useState(auth().currentUser?.uid)
-    console.log(auth().currentUser);
-    React.useEffect(() => {
-      const subscribe =  auth().onAuthStateChanged((user_) => {
-           setTimeout(() => {
-            setuser(user_)
-           }, 3000)
-            console.log(user_);
-        })
-        return subscribe
-    }, [])
-    
-    const Stack = createNativeStackNavigator();
-    return (
-        <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#008080' }, headerTintColor: '#fff', headerShown: false, }}>
-            {
-                user ?
-                    <>
-                        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-                    </>
-                    :
-                    <>
-                        <Stack.Screen name="Registration" component={Registration} />
-                        <Stack.Screen name="SignupScreen" component={SignupScreen} />
-                        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-                        <Stack.Screen name="PasswordReset" component={PasswordReset} />
-                    </>
-            }
-            {/* <Stack.Screen name="Today" component={TodayScreen} />
-            <Stack.Screen name="BottomBar" component={BottomBar} />
-            <Stack.Screen name="Task" component={Task} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="Gallery" component={Gallery} />
-            <Stack.Screen name="DishDetail" component={DishDetail} /> */}
-        </Stack.Navigator>
-    )
-}
+const Stack = createNativeStackNavigator();
 
+const StackNav = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="MainScreen" component={MainScreen} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Home" component={BottomBar} />
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} />
+      <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="Following" component={Following} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
+      <Stack.Screen name="OpenCard" component={OpenCard} />
+      <Stack.Screen name="FollowScreen" component={FollowScreen} />
+      <Stack.Screen name="ForYou" component={ForYou} />
+      <Stack.Screen name="UserProfile" component={UserProfile} />
+    </Stack.Navigator>
+  );
+};
 
+export default StackNav;

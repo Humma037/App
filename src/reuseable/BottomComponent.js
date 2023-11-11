@@ -1,14 +1,10 @@
-// BottomBar.js (Your existing BottomBar component)
-
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../Screen/Home';
-import Setting from '../Screen/Setting';
 import AntDesign from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
-const BottomBar = () => {
+const BottomComponent = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -16,21 +12,21 @@ const BottomBar = () => {
         tabBarStyle: {
           position: 'absolute',
           bottom: 15,
-          left: 15,
-          right: 15,
+          left: 18,
+          right: 10,
           borderRadius: 15,
           height: 70,
           backgroundColor: '#ffffff',
           borderColor: '#000',
           borderWidth: 1,
+          width: 350,
         },
         tabBarShowLabel: false, // Hide tab labels
         tabBarInactiveTintColor: 'gray',
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HiddenScreen1"
         options={{
           tabBarIcon: ({ focused }) => (
             <AntDesign
@@ -39,18 +35,19 @@ const BottomBar = () => {
               size={35}
               style={{
                 backgroundColor: focused ? '#CDF886' : 'transparent',
-                paddingVertical: 5, // Vertical padding
-                paddingHorizontal: 35, // Horizontal padding
+                paddingVertical: 5,
+                paddingHorizontal: 35,
                 borderRadius: 8,
-                marginHorizontal: 5, // Horizontal margin
+                marginHorizontal: 5,
               }}
             />
           ),
         }}
-      />
+      >
+        {() => null}
+      </Tab.Screen>
       <Tab.Screen
-        name="Setting"
-        component={Setting}
+        name="HiddenScreen2"
         options={{
           tabBarIcon: ({ focused }) => (
             <AntDesign
@@ -59,17 +56,19 @@ const BottomBar = () => {
               size={35}
               style={{
                 backgroundColor: focused ? '#CDF886' : 'transparent',
-                paddingVertical: 10, // Vertical padding
-                paddingHorizontal: 35, // Horizontal padding
+                paddingVertical: 10,
+                paddingHorizontal: 35,
                 borderRadius: 8,
-                marginHorizontal: 5, // Horizontal margin
+                marginHorizontal: 5,
               }}
             />
           ),
         }}
-      />
+      >
+        {() => null}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
 
-export default BottomBar;
+export default BottomComponent;
